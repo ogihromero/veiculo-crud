@@ -14,4 +14,9 @@ class Veiculo extends Model
         'versao',
         'year',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
