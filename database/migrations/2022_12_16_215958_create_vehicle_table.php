@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('manutencaos', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('model');
+            $table->string('brand');
+            $table->string('version');
+            $table->unsignedBigInteger('year');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manutencaos');
+        Schema::dropIfExists('vehicles');
     }
 };

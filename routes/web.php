@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Maintenance;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\MaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +23,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $start = today();
+    $end = today()->addDays(7);
+    $maintenances = Maintenance::where('user_id', Auth::id())->whereBetween('date', [$start, $end])->get();
+    return view('dashboard', ['maintenances' => $maintenances]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -28,4 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource('/vehicles', VehicleController::class)->middleware('auth:sanctum');
+Route::resource('/maintenances', MaintenanceController::class)->middleware('auth:sanctum');
+
+Route::get('/test', function () {
+    return view('teste');
+});
 require __DIR__.'/auth.php';

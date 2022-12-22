@@ -8,12 +8,19 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
+                    
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('vehicles.index')" :active="request()->routeIs('vehicles')">
+                        {{ __('Veículos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('maintenances.index')" :active="request()->routeIs('maintenances')">
+                        {{ __('Manutenções') }}
                     </x-nav-link>
                 </div>
             </div>

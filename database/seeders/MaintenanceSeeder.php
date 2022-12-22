@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Veiculo;
 
-class VeiculoSeeder extends Seeder
+class MaintenanceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class VeiculoSeeder extends Seeder
      */
     public function run()
     {
-        Veiculo::factory()->count(10)->create();
+        //
     }
 }
