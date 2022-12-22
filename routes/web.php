@@ -38,7 +38,5 @@ Route::middleware('auth')->group(function () {
 Route::resource('/vehicles', VehicleController::class)->middleware('auth:sanctum');
 Route::resource('/maintenances', MaintenanceController::class)->middleware('auth:sanctum');
 
-Route::get('/test', function () {
-    return view('teste');
-});
+
 require __DIR__.'/auth.php';
